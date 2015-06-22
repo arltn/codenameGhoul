@@ -1,0 +1,7 @@
+This folder is meant for the following:
+
+	- Art
+	- Animation
+	- Sound
+
+The items stored here should be in RAW form only! These items will not be used by the game directly, but are more for the artists and designers to have a place to store/retrieve these items.

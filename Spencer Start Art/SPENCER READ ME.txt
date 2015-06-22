@@ -1,0 +1,5 @@
+I moved your maincharacterfrontview image into "Assets\Characters\Main Character"
+
+ALSO, it has been renamed to "FRONT VIEW" for now just for ease.
+
+After Reading this, please delete the "Spencer Starting Art" folder and use the Assets folder going forward

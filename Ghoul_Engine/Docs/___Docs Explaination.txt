@@ -1,0 +1,3 @@
+The Docs directory is a reference for the development team. It should have an organized hierarchy to store both design documents and technical specifications.
+
+*** AS a special case, if there are text documents that are in progress, this could be a place to temporarily store them.  ***

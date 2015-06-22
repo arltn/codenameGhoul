@@ -1,0 +1,7 @@
+This folder is meant to hold all of the source code for the project.
+
+The programmers should be the only ones to be arranging these folders.
+
+
+
+*** The project's solution/makefile should be kept here in some capacity ***

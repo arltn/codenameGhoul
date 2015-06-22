@@ -1,0 +1,3 @@
+This folder should contain the Release build of the game, along with ALL necessary files that the game needs to run.
+
+If a demo is EVER TO BE GIVEN OUT, the CONTENTS OF THE ITEMS BEING SENT MUST BE APPROVED BY THE DEVELOPMENT TEAM (Programmers) TO ENSURE THAT SOUCE CODE IS NOT BEING RELEASED.

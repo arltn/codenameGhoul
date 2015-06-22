@@ -1,0 +1,3 @@
+This will contain items needed for the game engine.
+
+Everyone minus Development may ignore this folder entirely.
