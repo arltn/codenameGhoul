@@ -25,7 +25,8 @@ void InputHandler::handleInput(bool &running)
 		}
 		if (inputEvent.type == SDL_KEYDOWN)
 		{
-			
+			queueEvent.setName("Any Key");
+			eventMan->sendNow(queueEvent);
 			switch (inputEvent.key.keysym.sym)
 			{
 			case SDLK_w:				

@@ -30,6 +30,7 @@ void DebuggingSystem::closeDebugging()
 	localtime_s(&now, &t);
 	debuggingFile << (now.tm_year + 1900) << '-' << (now.tm_mon + 1) << '-' << now.tm_mday << ' ' << now.tm_hour << ':' << now.tm_min << ':' << now.tm_sec << endl
 		<< "Debugging System Destroyed, Program ending." << endl << "*********************************************************" << endl << endl;
+	debuggingFile.close();
 };
 
 void DebuggingSystem::writeMessage(string message)

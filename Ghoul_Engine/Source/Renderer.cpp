@@ -1,13 +1,12 @@
 #include "Renderer.h"
 #include <SDL_image.h>
 
-void Renderer::init(int screenW = 600, int screenH = 800){
+void Renderer::init(int screenW = 600, int screenH = 800) {
 	rendererFileSystem = FileSystem::getInstance();
 	debug = DebuggingSystem::getInstance();
 	window = NULL;
 	screenSurface = NULL;
 	gRenderer = NULL;
-	gTexture = NULL;
 	fullscreen = false;
 
 	string debugMessage;
@@ -22,16 +21,16 @@ void Renderer::init(int screenW = 600, int screenH = 800){
 	{
 		window = SDL_CreateWindow("Code Name Ghoul", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenW, screenH, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 		if (window == NULL)
-		{ 
+		{
 			debugMessage = "COULDN\'T CREATE THE WINDOW";
 			debug->writeMessage(debugMessage);
 			//printf();
 		}
-			
+
 		else
 		{
 			gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-			if (gRenderer == NULL){
+			if (gRenderer == NULL) {
 				debugMessage = "Renderer could not be created! SDL Error:\n";
 				debugMessage += SDL_GetError();
 				debug->writeMessage(debugMessage);
@@ -39,7 +38,7 @@ void Renderer::init(int screenW = 600, int screenH = 800){
 			else
 			{
 				SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
-
+				/*
 				int imgFlags = IMG_INIT_PNG;// | IMG_INIT_JPG | IMG_INIT_TIF;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
@@ -52,21 +51,23 @@ void Renderer::init(int screenW = 600, int screenH = 800){
 				{
 					gTexture = rendererFileSystem->loadTexture("..\\Assets\\Pictures\\Demon.png", gRenderer);
 				}
+				*/
 			}
-			screenSurface = SDL_GetWindowSurface(window);
+			//screenSurface = SDL_GetWindowSurface(window);
+
 		}
-		
+
 		//TODO:
-		/*
-		Set up a test for the W key press event
-		*/
+		//Set up a test for the W key press event
+	//}
+		screenSurface = SDL_GetWindowSurface(window);
+
 		rendererListener = new eventListener();
 		rendererListener->init();
 		Event holdEvent("W");
 		rendererListener->registerEvent(holdEvent);
 		holdEvent.setName("Fullscreen");
 		rendererListener->registerEvent(holdEvent);
-		
 	}
 }
 
@@ -100,8 +101,14 @@ void Renderer::renderScene()
 
 	SDL_RenderClear(gRenderer);
 
+	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
+
 	//Render texture to screen
-	SDL_RenderCopy(gRenderer, gTexture, NULL, NULL);
+	for (unsigned int x = 0; x < gTextures.size(); x++)
+	{
+		SDL_RenderCopy(gRenderer, gTextures[x], NULL, NULL);
+	}
+	
 
 	//Update screen
 	SDL_RenderPresent(gRenderer);
@@ -151,6 +158,11 @@ void Renderer::render()
 SDL_PixelFormat* Renderer::getFormat()
 {
 	return screenSurface->format;
+};
+
+void Renderer::addTexture(SDL_Texture* texture) 
+{
+	gTextures.push_back(texture);
 };
 
 Renderer::~Renderer(){

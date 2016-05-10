@@ -18,6 +18,9 @@ public:
 		SDL_SetWindowTitle(window, newTitle.c_str());
 	};
 	SDL_PixelFormat* getFormat();
+	void addTexture(SDL_Texture*);
+	SDL_Renderer* getRenderer() { return gRenderer; };
+	void clearTextures() { gTextures.clear(); };
 protected:
 private:
 	Renderer();
@@ -28,7 +31,7 @@ private:
 	void handleEvent(Event);
 	SDL_Window* window;
 	SDL_Surface* screenSurface;
-	SDL_Texture* gTexture;
+	vector<SDL_Texture*> gTextures;
 	SDL_Renderer* gRenderer;
 	FileSystem* rendererFileSystem;
 	eventListener* rendererListener;

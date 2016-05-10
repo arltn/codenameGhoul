@@ -15,10 +15,14 @@ public:
 
 	void draw();
 	void update();
+	void handleEvent(Event E);
 private:
 	static IntroState* inst;
+	FileSystem* IntroFile;	
 	Renderer* introRenderer;
+	eventListener* introListener;
+	SDL_Texture* IntroBackground;
 	IntroState() {};
-	vector<SDL_Rect> rects;
+	Event queuedEvent;
 protected:
 };
