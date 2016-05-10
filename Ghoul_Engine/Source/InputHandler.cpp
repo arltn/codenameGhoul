@@ -11,18 +11,43 @@ InputHandler* InputHandler::getInstance()
 };
 void InputHandler::handleInput(bool &running)
 {
+	Event queueEvent;
+	
 	while (SDL_PollEvent(&inputEvent) != 0)
 	{
 		if (inputEvent.type == SDL_QUIT)
 		{
+			queueEvent.setName("Quit");
+			eventMan->sendNow(queueEvent);
 			// SEND QUIT EVENT
 			// FOR NOW MAKING A SINGLETON FOR THE MAIN LOOP'S GAME RUNNING BOOL
 			running = false;
 		}
+		if (inputEvent.type == SDL_KEYDOWN)
+		{
+			
+			switch (inputEvent.key.keysym.sym)
+			{
+			case SDLK_w:				
+				queueEvent.setName("W");
+				eventMan->queueEvent(queueEvent);
+				break;
+			case SDLK_F4:
+				//cout << "Sending Fullscreen Event" << endl;
+				queueEvent.setName("Fullscreen");
+				eventMan->queueEvent(queueEvent);
+				//eventMan->printListeners();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 };
 void InputHandler::initHandler()
-{};
+{
+	eventMan = eventManager::getInst();
+};
 
 InputHandler* InputHandler::inst = 0;
 InputHandler::InputHandler()

@@ -1,0 +1,6 @@
+﻿  main.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\main.cpp(67): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\main.cpp(79): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+  Ghoul Engine.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Source\Debug\Ghoul Engine.exe
