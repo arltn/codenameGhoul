@@ -2,6 +2,10 @@
 
 #include "GameState.h"
 #include "Renderer.h"
+#include "GameStateManager.h"
+#include "Entity.h"
+#include "PositionComponent.h"
+#include <vector>
 
 class IntroState : public GameState
 {

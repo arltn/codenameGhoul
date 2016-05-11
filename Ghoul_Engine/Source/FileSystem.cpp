@@ -89,3 +89,20 @@ SDL_Surface* FileSystem::loadTexture(std::string path)
 
 	return optimizedSurface;
 };
+
+
+vector<string> FileSystem::loadFile(std::string path)
+{
+	ifstream retVal;
+	vector<string> retVect;
+	string holdString;
+	retVal.open(path, ios::in);
+	while (!retVal.eof())
+	{
+		std::getline(retVal, holdString);
+		retVect.push_back(holdString);
+		//debug->writeMessage(holdString);
+	}
+	retVal.close();
+	return retVect;
+}

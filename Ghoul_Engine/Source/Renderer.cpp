@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include <SDL_image.h>
 
-void Renderer::init(int screenW = 600, int screenH = 800) {
+void Renderer::init() {
 	rendererFileSystem = FileSystem::getInstance();
 	debug = DebuggingSystem::getInstance();
 	window = NULL;
@@ -9,8 +9,13 @@ void Renderer::init(int screenW = 600, int screenH = 800) {
 	gRenderer = NULL;
 	fullscreen = false;
 
+	int screenW, screenH;
+
 	string debugMessage;
 
+
+	SDL_DisplayMode dm;
+		
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		debugMessage = "SDL COULD NOT INITIALIZE";
@@ -19,7 +24,19 @@ void Renderer::init(int screenW = 600, int screenH = 800) {
 	}
 	else
 	{
-		window = SDL_CreateWindow("Code Name Ghoul", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenW, screenH, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+		if (SDL_GetDesktopDisplayMode(0, &dm) != 0)
+		{
+			debugMessage = "SDL_GetDesktopDisplayMode Failed: ";
+			debugMessage += SDL_GetError();
+			debug->writeMessage(debugMessage);
+		}
+		else
+		{
+			screenW = dm.w - 2;
+			screenH = dm.h - 70;
+		}
+
+		window = SDL_CreateWindow("Code Name Ghoul", 1, 29, screenW, screenH, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 		if (window == NULL)
 		{
 			debugMessage = "COULDN\'T CREATE THE WINDOW";
@@ -59,15 +76,18 @@ void Renderer::init(int screenW = 600, int screenH = 800) {
 
 		//TODO:
 		//Set up a test for the W key press event
-	//}
+	
 		screenSurface = SDL_GetWindowSurface(window);
 
 		rendererListener = new eventListener();
 		rendererListener->init();
+		fillEvents();
+		/*
 		Event holdEvent("W");
 		rendererListener->registerEvent(holdEvent);
 		holdEvent.setName("Fullscreen");
 		rendererListener->registerEvent(holdEvent);
+		*/
 	}
 }
 
@@ -79,12 +99,23 @@ Renderer::Renderer()
 
 Renderer *Renderer::inst = 0;
 
+void Renderer::fillEvents() 
+{
+	vector<string> holdEvents;
+	holdEvents = rendererFileSystem->loadFile("..\\Assets\\Config\\renderEvent.dat");
+
+	for (unsigned int x = 0; x < holdEvents.size(); x++)
+	{
+		rendererListener->registerEvent(holdEvents[x]);
+	}
+};
+
 Renderer *Renderer::getInstance()
 {
 	if (inst == 0)
 	{
 		inst = new Renderer();
-		inst->init(800, 600);
+		inst->init();
 	}
 	return inst;
 }
@@ -137,13 +168,13 @@ void Renderer::fullScreen()
 {
 	if (fullscreen)
 	{
-		debug->writeMessage("Setting to windowed.");
+		//debug->writeMessage("Setting to windowed.");
 		SDL_SetWindowFullscreen(window, SDL_FALSE);
 		fullscreen = false;
 	}
 	else if (!fullscreen)
 	{
-		debug->writeMessage("Setting to fullscreen.");
+		//debug->writeMessage("Setting to fullscreen.");
 		SDL_SetWindowFullscreen(window, SDL_TRUE);
 		fullscreen = true;
 	}
@@ -170,4 +201,5 @@ Renderer::~Renderer(){
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(gRenderer);
 	IMG_Quit();
+	SDL_Quit();
 }

@@ -12,7 +12,7 @@ class Renderer
 public:
 	static Renderer *getInstance();
 	void render();
-	void init(int screenW, int screenH);
+	void init();
 	void setTitle(std::string newTitle)
 	{
 		SDL_SetWindowTitle(window, newTitle.c_str());
@@ -21,6 +21,7 @@ public:
 	void addTexture(SDL_Texture*);
 	SDL_Renderer* getRenderer() { return gRenderer; };
 	void clearTextures() { gTextures.clear(); };
+	void fillEvents();
 protected:
 private:
 	Renderer();

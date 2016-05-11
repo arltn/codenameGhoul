@@ -82,31 +82,41 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="DebuggingSystem.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="eventListener.cpp" />
     <ClCompile Include="eventManager.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IntroState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="SystemManager.cpp" />
     <ClCompile Include="Vector2f.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="IComponent.h" />
+    <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="DebuggingSystem.h" />
     <ClInclude Include="event.h" />
     <ClInclude Include="eventListener.h" />
     <ClInclude Include="eventManager.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameObj.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IntroState.h" />
+    <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="SpriteSheet.h" />

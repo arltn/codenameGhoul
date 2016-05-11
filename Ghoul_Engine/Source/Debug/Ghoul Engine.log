@@ -1,11 +1,39 @@
-﻿  IntroState.cpp
+﻿  Vector2f.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\vector2f.cpp(22): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  SystemManager.cpp
 c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
   c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  GameStateManager.cpp
-  main.cpp
-  SystemManager.cpp
+  SpriteSheet.cpp
   Renderer.cpp
+  PositionComponent.cpp
+  main.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\main.cpp(25): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\main.cpp(37): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+  IntroState.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  InputHandler.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  GameStateManager.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Game.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
   FileSystem.cpp
+  eventManager.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  eventListener.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\source\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  event.cpp
+  Entity.cpp
+  DebuggingSystem.cpp
+  ComponentManager.cpp
+  Clock.cpp
+  Generating Code...
   Ghoul Engine.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Source\Debug\Ghoul Engine.exe

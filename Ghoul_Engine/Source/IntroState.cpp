@@ -1,5 +1,5 @@
 #include "IntroState.h"
-#include "GameStateManager.h"
+
 
 IntroState* IntroState::inst = 0;
 
@@ -23,6 +23,9 @@ void IntroState::init()
 	introListener->registerEvent(queuedEvent);
 	IntroBackground = IntroFile->loadTexture("..\\Assets\\Pictures\\intro.bmp", introRenderer->getRenderer());
 	introRenderer->addTexture(IntroBackground);
+
+	Entity holdEntity(new PositionComponent(0,0));
+
 };
 void IntroState::cleanup()
 {
@@ -54,6 +57,6 @@ void IntroState::handleEvent(Event E)
 	if (E.getName() == "Any Key")
 	{
 		cout << "Event Hit, pushing state" << endl;
-		eventMan->changeState(IntroState::getInstance());
+		//eventMan->changeState(IntroState::getInstance());
 	}
 };
