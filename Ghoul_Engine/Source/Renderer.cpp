@@ -122,14 +122,6 @@ Renderer *Renderer::getInstance()
 
 void Renderer::renderScene()
 {
-	Event holdEvent;
-	
-	if (!rendererListener->isEmpty())
-	{
-		holdEvent = rendererListener->removeEvent();
-		handleEvent(holdEvent);
-	}
-
 	SDL_RenderClear(gRenderer);
 
 	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
@@ -182,6 +174,14 @@ void Renderer::fullScreen()
 
 void Renderer::render()
 {
+	Event holdEvent;
+
+	if (!rendererListener->isEmpty())
+	{
+		holdEvent = rendererListener->removeEvent();
+		handleEvent(holdEvent);
+	}
+
 	renderScene();
 }
 

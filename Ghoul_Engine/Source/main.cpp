@@ -8,9 +8,9 @@ const float TICKS_PER_FRAME = 1000 / FRAMES_PER_SECOND;
 
 Clock gameClock, fpsClock;
 
-void shutDown()
+void shutDown(Game* g)
 {
-
+	g->shutDown();
 };
 
 int main(int argc, char* argv[])
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
 	}
 
 
-	shutDown();
+	shutDown(MainGame);
 
 	return 0;
 }
