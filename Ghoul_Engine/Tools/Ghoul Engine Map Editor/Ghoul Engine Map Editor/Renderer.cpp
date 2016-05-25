@@ -1,9 +1,13 @@
 #include "Renderer.h"
-#include <SDL_image.h>
+
+
 
 void Renderer::init() {
-	rendererFileSystem = FileSystem::getInstance();
+
+	//Replacing with Editor because both systems are contained there
+	file = FileSystem::getInstance();
 	debug = DebuggingSystem::getInstance();
+	
 	window = NULL;
 	screenSurface = NULL;
 	gRenderer = NULL;
@@ -16,6 +20,9 @@ void Renderer::init() {
 
 	SDL_DisplayMode dm;
 		
+	clearTextures();
+
+
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		debugMessage = "SDL COULD NOT INITIALIZE";
@@ -83,6 +90,8 @@ void Renderer::init() {
 		rendererListener->init();
 		fillEvents();
 		
+		scene.drawRect = NULL;
+
 		/*
 		Event holdEvent("W");
 		rendererListener->registerEvent(holdEvent);
@@ -103,7 +112,7 @@ Renderer *Renderer::inst = 0;
 void Renderer::fillEvents() 
 {
 	vector<string> holdEvents;
-	holdEvents = rendererFileSystem->loadFile("..\\Assets\\Config\\renderEvent.dat");
+	holdEvents = file->loadFile("..\\Assets\\Config\\renderEvent.dat");
 
 
 	for (unsigned int x = 0; x < holdEvents.size(); x++)
@@ -129,15 +138,49 @@ void Renderer::renderScene()
 
 	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
 
-	//Render texture to screen
-	for (unsigned int x = 0; x < gTextures.size(); x++)
+	//Render the background:
+	if (!scene.backgroundTextures.empty())
 	{
-		SDL_RenderCopy(gRenderer, gTextures[x], NULL, NULL);
+		//cout << "backgroundTextures size: " << scene.backgroundTextures.size() << endl;
+		for (unsigned int x = 0; x < scene.backgroundTextures.size(); x++)
+		{
+			//SDL_BlitSurface(screenSurface, NULL, scene.backgroundTextures[x], &scene.backgroundTextures[x]->clip_rect);
+
+			SDL_RenderCopy(gRenderer, scene.backgroundTextures[x], NULL, scene.backgroundRects[x]);
+		}
 	}
-	
+
+	//Render texture to screen
+	if (!scene.textures.empty())
+	{
+		//cout << "textures size: " << scene.textures.size() << endl;
+		for (unsigned int x = 0; x < scene.textures.size(); x++)
+		{
+			//SDL_BlitSurface(screenSurface, NULL, scene.Textures[x], NULL);
+			//&scene.Textures[x]->clip_rect
+			SDL_RenderCopy(gRenderer, scene.textures[x], NULL, scene.textureRects[x]);
+		}
+	}
+
+	if (!scene.foregroundTextures.empty())
+	{
+		//cout << "foregroundTextures size: " << scene.foregroundTextures.size() << endl;
+		for (unsigned int x = 0; x < scene.foregroundTextures.size(); x++)
+		{
+			//SDL_BlitSurface(screenSurface, NULL, scene.foregroundTextures[x], NULL);
+			//&scene.foregroundTextures[x]->clip_rect
+			SDL_RenderCopy(gRenderer, scene.foregroundTextures[x], NULL, scene.foregroundRects[x]);
+		}
+	}
+
+	if (scene.drawRect != NULL)
+	{
+		SDL_RenderDrawRect(gRenderer, scene.drawRect);
+	}
 
 	//Update screen
 	SDL_RenderPresent(gRenderer);
+	//SDL_UpdateWindowSurface(window);
 
 	//SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0, 0, 0));
 
@@ -194,9 +237,46 @@ SDL_PixelFormat* Renderer::getFormat()
 	return screenSurface->format;
 };
 
-void Renderer::addTexture(SDL_Texture* texture) 
+void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect) 
 {
-	gTextures.push_back(texture);
+	scene.textures.push_back(texture);
+	scene.textureRects.push_back(rect);
+};
+
+void Renderer::addBackgroundTexture(SDL_Texture* texture, SDL_Rect* rect) 
+{
+	scene.backgroundTextures.push_back(texture);
+	scene.backgroundRects.push_back(rect);
+};
+void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect) 
+{
+	scene.foregroundTextures.push_back(texture);
+	scene.foregroundRects.push_back(rect);
+};
+
+void Renderer::clearTextures() 
+{ 
+	for (unsigned int x = 0; x < scene.backgroundTextures.size(); x++)
+	{
+		SDL_DestroyTexture(scene.backgroundTextures[x]);
+	}
+
+	for (unsigned int x = 0; x < scene.textures.size(); x++)
+	{
+		SDL_DestroyTexture(scene.textures[x]);
+	}
+
+	for (unsigned int x = 0; x < scene.foregroundTextures.size(); x++)
+	{
+		SDL_DestroyTexture(scene.foregroundTextures[x]);
+	}
+
+	scene.backgroundTextures.clear();
+	scene.textures.clear(); 
+	scene.foregroundTextures.clear();
+	scene.backgroundRects.clear();
+	scene.textureRects.clear();
+	scene.foregroundRects.clear();
 };
 
 Renderer::~Renderer(){

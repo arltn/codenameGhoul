@@ -1,5 +1,46 @@
-﻿  main.cpp
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\debug\ghoul engine map editor.pdb' because it is being used by another process.
+  Vector2f.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\vector2f.cpp(22): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  SystemManager.cpp
 c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
   c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  SpriteSheet.cpp
+  Renderer.cpp
+  main.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  InputHandler.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  StateManager.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  NewState.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  MenuState.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(123): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(124): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(153): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(154): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  LoadState.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  FileSystem.cpp
+  eventManager.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  eventListener.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  event.cpp
+  Editor.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  DebuggingSystem.cpp
+  Clock.cpp
+  Generating Code...
   Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.exe
   Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.pdb (Partial PDB)

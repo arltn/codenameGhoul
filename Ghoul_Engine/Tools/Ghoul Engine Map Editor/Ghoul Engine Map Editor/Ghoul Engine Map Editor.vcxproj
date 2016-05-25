@@ -79,7 +79,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;/NODEFAULTLIB:msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;/NODEFAULTLIB:msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -119,10 +119,15 @@
   <ItemGroup>
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="DebuggingSystem.cpp" />
+    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="eventListener.cpp" />
     <ClCompile Include="eventManager.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="LoadState.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="NewState.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -133,10 +138,16 @@
   <ItemGroup>
     <ClInclude Include="Clock.h" />
     <ClInclude Include="DebuggingSystem.h" />
+    <ClInclude Include="Editor.h" />
     <ClInclude Include="event.h" />
     <ClInclude Include="eventListener.h" />
     <ClInclude Include="eventManager.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="LoadState.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="NewState.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SpriteSheet.h" />

@@ -1,46 +1,21 @@
 #include <iostream>
-#include "SystemManager.h"
-#include "eventListener.h"
+#include "Editor.h"
 
 
 using namespace std;
 
-SystemManager* editorSystems;
-eventListener* quitListener;
-bool running;
 
 int main(int argc, char* argv[])
 {
-	Event quit("Quit");
-	quitListener = new eventListener();
-	quitListener->registerEvent(quit);
-	
+	Editor* mainEditor = Editor::getInstance();
 
-	editorSystems = SystemManager::getInstance();
-	editorSystems->init();
-	
-	
-	running = true;
-	
-	while (running) 
+
+	while (mainEditor->isRunning())
 	{
-		editorSystems->update();
-
-		if (!quitListener->isEmpty())
-		{
-			cout << "hello world" << endl;
-			quitListener->removeEvent();
-			running = false;
-		}
-
+		mainEditor->update();
 	}
 
-	
-
-
-	editorSystems->ShutDown();
-
-	delete quitListener;
+	mainEditor->shutDown();
 
 	return 0;
 }

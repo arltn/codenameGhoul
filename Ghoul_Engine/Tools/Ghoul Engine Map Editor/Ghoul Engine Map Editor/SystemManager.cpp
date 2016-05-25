@@ -15,19 +15,23 @@ SystemManager* SystemManager::getInstance()
 void SystemManager::init()
 {
 	running = true;
-	RenderingSystem = Renderer::getInstance();
-	InputSystem = InputHandler::getInstance();
-	EventSystem = eventManager::getInst();
-	DebugSystem = DebuggingSystem::getInstance();
+	
 };
 
 void SystemManager::update()
 {
-	InputSystem->handleInput(running);
-	RenderingSystem->render();
-	EventSystem->update();
+	
 };
 
+void SystemManager::writeMessage(string message)
+{ 
+	DebugSystem->writeMessage(message); 
+}
+
+vector<string> SystemManager::loadFile(string path)
+{
+	return Filesystem->loadFile(path);
+}
 
 void SystemManager::ShutDown()
 {

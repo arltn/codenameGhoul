@@ -43,6 +43,22 @@ void InputHandler::handleInput(bool &running)
 				break;
 			}
 		}
+		if (inputEvent.type == SDL_MOUSEMOTION)
+		{
+			int x, y;
+			queueEvent.setName("Mouse Move");
+			SDL_GetMouseState(&x, &y);
+			queueEvent.setValues(x, y);
+			eventMan->queueEvent(queueEvent);
+		}
+		if (inputEvent.type == SDL_MOUSEBUTTONDOWN)
+		{
+			int x, y;
+			queueEvent.setName("Mouse Click");
+			SDL_GetMouseState(&x, &y);
+			queueEvent.setValues(x, y);
+			eventMan->queueEvent(queueEvent);
+		}
 	}
 };
 void InputHandler::initHandler()
