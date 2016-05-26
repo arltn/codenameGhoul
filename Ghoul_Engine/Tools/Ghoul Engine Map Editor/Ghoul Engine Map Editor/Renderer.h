@@ -23,9 +23,9 @@ public:
 		SDL_SetWindowTitle(window, newTitle.c_str());
 	};
 	SDL_PixelFormat* getFormat();
-	void addTexture(SDL_Texture*, SDL_Rect* = NULL);
-	void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL);
-	void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL);
+	void addTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
 	void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
 	void removeDrawRect() { scene.drawRect = NULL; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
@@ -45,10 +45,13 @@ private:
 	{
 		vector<SDL_Texture*> foregroundTextures;
 		vector<SDL_Rect*> foregroundRects;
+		vector<SDL_Rect*> foregroundClips;
 		vector<SDL_Texture*> textures;
 		vector<SDL_Rect*> textureRects;
+		vector<SDL_Rect*> textureClips;
 		vector<SDL_Texture*> backgroundTextures;
 		vector<SDL_Rect*> backgroundRects;
+		vector<SDL_Rect*> backgroundClips;
 		SDL_Rect* drawRect;
 	};
 	Scene scene;

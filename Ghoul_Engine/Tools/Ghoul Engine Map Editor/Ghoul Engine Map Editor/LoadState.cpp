@@ -18,17 +18,27 @@ LoadState* LoadState::getInstance()
 void LoadState::init()
 {
 	//FileSystem* tempFile = FileSystem::getInstance();
+	cout << "Load State Init" << endl;
+	//cout << "File to be loaded: " << filePath << endl;
+	loadStateMap = new Map(filePath);
 
-	cout << "File to be loaded: " << filePath << endl;
-	Editor* tempEditor = Editor::getInstance();
-	tempEditor->addMap(filePath);
+	loadStateMap->init(Renderer::getInstance()->getRenderer());
 
 
 };
-void LoadState::cleanUp() {};
+void LoadState::cleanUp() 
+{
+	delete loadStateMap;
+};
 
 void LoadState::pause() {};
 void LoadState::resume() {};
 
-void LoadState::draw() {};
-void LoadState::update() {};
+void LoadState::draw() 
+{
+	loadStateMap->draw(Renderer::getInstance()->getRenderer());
+};
+void LoadState::update() 
+{
+	draw();
+};

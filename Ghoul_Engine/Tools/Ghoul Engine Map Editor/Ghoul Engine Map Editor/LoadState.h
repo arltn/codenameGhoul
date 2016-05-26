@@ -22,4 +22,5 @@ public:
 private:
 	string filePath;
 	static LoadState* inst;
+	Map* loadStateMap;
 };

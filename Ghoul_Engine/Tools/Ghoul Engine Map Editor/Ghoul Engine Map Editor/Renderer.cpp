@@ -145,7 +145,7 @@ void Renderer::renderScene()
 		{
 			//SDL_BlitSurface(screenSurface, NULL, scene.backgroundTextures[x], &scene.backgroundTextures[x]->clip_rect);
 
-			SDL_RenderCopy(gRenderer, scene.backgroundTextures[x], NULL, scene.backgroundRects[x]);
+			SDL_RenderCopy(gRenderer, scene.backgroundTextures[x], scene.backgroundClips[x], scene.backgroundRects[x]);//scene.backgroundClips[x], scene.backgroundRects[x]);
 		}
 	}
 
@@ -157,7 +157,7 @@ void Renderer::renderScene()
 		{
 			//SDL_BlitSurface(screenSurface, NULL, scene.Textures[x], NULL);
 			//&scene.Textures[x]->clip_rect
-			SDL_RenderCopy(gRenderer, scene.textures[x], NULL, scene.textureRects[x]);
+			SDL_RenderCopy(gRenderer, scene.textures[x], scene.textureClips[x], scene.textureRects[x]);
 		}
 	}
 
@@ -168,7 +168,7 @@ void Renderer::renderScene()
 		{
 			//SDL_BlitSurface(screenSurface, NULL, scene.foregroundTextures[x], NULL);
 			//&scene.foregroundTextures[x]->clip_rect
-			SDL_RenderCopy(gRenderer, scene.foregroundTextures[x], NULL, scene.foregroundRects[x]);
+			SDL_RenderCopy(gRenderer, scene.foregroundTextures[x], scene.foregroundClips[x], scene.foregroundRects[x]);
 		}
 	}
 
@@ -236,21 +236,24 @@ SDL_PixelFormat* Renderer::getFormat()
 	return screenSurface->format;
 };
 
-void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect) 
+void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
 	scene.textures.push_back(texture);
 	scene.textureRects.push_back(rect);
+	scene.textureClips.push_back(clip);
 };
 
-void Renderer::addBackgroundTexture(SDL_Texture* texture, SDL_Rect* rect) 
+void Renderer::addBackgroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
 	scene.backgroundTextures.push_back(texture);
 	scene.backgroundRects.push_back(rect);
+	scene.backgroundClips.push_back(clip);
 };
-void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect) 
+void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
 	scene.foregroundTextures.push_back(texture);
 	scene.foregroundRects.push_back(rect);
+	scene.foregroundClips.push_back(clip);
 };
 
 //void Renderer::addMap(Map m)
@@ -282,6 +285,9 @@ void Renderer::clearTextures()
 	scene.backgroundRects.clear();
 	scene.textureRects.clear();
 	scene.foregroundRects.clear();
+	scene.backgroundClips.clear();
+	scene.foregroundClips.clear();
+	scene.textureClips.clear();
 };
 
 Renderer::~Renderer(){

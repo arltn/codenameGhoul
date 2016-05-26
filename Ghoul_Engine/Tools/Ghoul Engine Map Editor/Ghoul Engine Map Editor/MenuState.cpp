@@ -206,6 +206,7 @@ void MenuState::handleEvent(Event e)
 
 void MenuState::cleanUp()
 {
+	cout << "MenuState Cleanup" << endl;
 	Renderer* tempRender = Renderer::getInstance();
 	tempRender->clearTextures();
 	TTF_CloseFont(buttonFont);

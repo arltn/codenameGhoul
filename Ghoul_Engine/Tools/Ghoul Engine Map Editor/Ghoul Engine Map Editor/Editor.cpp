@@ -55,8 +55,6 @@ void Editor::update()
 
 	InputSystem->handleInput(running);
 	RenderingSystem->render();
-	if (!editorMap == NULL)
-		editorMap->draw(RenderingSystem->getRenderer());
 	EventSystem->update();
 	EditorStateManager->update();
 
@@ -72,7 +70,6 @@ void Editor::shutDown()
 {
 	// Mem Leak proctection
 	delete EditorListener;
-	delete editorMap;
 
 	EditorStateManager->cleanUp();
 

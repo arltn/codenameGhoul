@@ -1,3 +1,4 @@
-﻿  Map.cpp
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+  Map.cpp
   Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.exe
   Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.pdb (Partial PDB)

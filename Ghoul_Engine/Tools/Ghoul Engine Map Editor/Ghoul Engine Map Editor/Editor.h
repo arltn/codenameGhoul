@@ -1,7 +1,6 @@
 #pragma once
 
 #include "StateManager.h"
-#include "Map.h"
 #include "SpriteSheet.h"
 #include "MenuState.h"
 #include "event.h"
@@ -28,8 +27,6 @@ public:
 	void handleEvent(Event E);
 	void shutDown();
 	bool isRunning() { return running; };
-	void addMap(string path) { editorMap = new Map(path); };
-
 private:
 	Editor() {};
 	static Editor* inst;
@@ -42,5 +39,4 @@ private:
 	FileSystem* Filesystem;
 	//ComponentManager* EditorComponentMan;
 	bool running;
-	Map* editorMap;
 };

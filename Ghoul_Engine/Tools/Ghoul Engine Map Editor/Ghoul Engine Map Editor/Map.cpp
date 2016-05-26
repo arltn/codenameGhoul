@@ -51,7 +51,7 @@ Map::Map(string path)
 		while (file.peek() != EOF)
 		{
 			file >> holdType;
-			mapTiles.emplace(mapTiles.begin(),Tile(holdWidth * TILE_WIDTH, holdHeight * TILE_HEIGHT, holdType));
+			mapTiles.emplace(mapTiles.begin(), Tile(holdWidth * TILE_WIDTH, (holdHeight * TILE_HEIGHT) + 70, holdType));
 			//cout << "Adding tile" << endl;
 			//cout << "h: " << holdHeight << ", w: " << holdWidth << endl;
 			if (holdWidth + 1 >= mapWidth)
@@ -63,10 +63,10 @@ Map::Map(string path)
 				holdWidth += 1;
 		}
 		
-		//for (unsigned int x = 0; x < mapTiles.size(); x++)
-		//{
+		for (unsigned int x = 0; x < mapTiles.size(); x++)
+		{
 			//cout << mapTiles[x] << endl;
-		//}
+		}
 	}
 	file.close();
 	
@@ -79,6 +79,8 @@ Map::Map(string path)
 
 }
 
+
+
 void Map::init(SDL_Renderer* render)
 {
 	SDL_Surface* hold;
@@ -87,13 +89,18 @@ void Map::init(SDL_Renderer* render)
 	if (!hold)
 		cout << "Failed to load hold" << endl;
 	else
+	{
+		cout << "Loaded map spirtes" << endl;
 		sheet = SDL_CreateTextureFromSurface(render, hold);
-
-	//for (unsigned int x = 0; x < mapTiles.size(); x++)
-	//{
-		//render->addTexture();
-//	}
-
+	}
+	cout << "mapTiles size: " << mapTiles.size() << endl;
+	
+	for (unsigned int x = 0; x < mapTiles.size(); x++)
+	{
+		//cout << "Adding background Texture" << endl;
+		cout << "Tile " << x << ": " << mapTiles[x] << endl;
+		Renderer::getInstance()->addBackgroundTexture(sheet, &tileBoxes[mapTiles[x].getType()] ,&mapTiles[x].getBox());//, 
+	}
 }
 
 void Map::draw(SDL_Renderer* render)
