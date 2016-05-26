@@ -12,7 +12,7 @@ int main(int argc, char* args[])
 	SDL_Renderer* render = NULL;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
-	Map mainMap("C:\\Users\\nja1121\\Documents\\codenameGhoul\\Ghoul_Engine\\Assets\\lazy.MAPDAT");
+	Map mainMap("C:\\Users\\nja1121\\Documents\\codenameGhoul\\Ghoul_Engine\\Assets\\Maps\\level1.MAPDAT");
 
 	SDL_CreateWindowAndRenderer(640, 640, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE, &window, &render);
 

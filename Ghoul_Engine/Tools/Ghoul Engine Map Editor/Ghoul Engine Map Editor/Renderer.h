@@ -23,11 +23,11 @@ public:
 		SDL_SetWindowTitle(window, newTitle.c_str());
 	};
 	SDL_PixelFormat* getFormat();
-	void addTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
-	void removeDrawRect() { scene.drawRect = NULL; };
+	//void addTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	//void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	//void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	//void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
+	//void removeDrawRect() { scene.drawRect = NULL; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
 	//void addMap(Map m);
 	void clearTextures();
@@ -41,6 +41,7 @@ private:
 	void renderScene();
 	void handleEvent(Event);
 	SDL_Window* window;
+	/* Removing these as they appear to be causing heap issues!
 	struct Scene
 	{
 		vector<SDL_Texture*> foregroundTextures;
@@ -55,6 +56,7 @@ private:
 		SDL_Rect* drawRect;
 	};
 	Scene scene;
+	*/
 	SDL_Surface* screenSurface;
 	SDL_Renderer* gRenderer;
 	eventListener* rendererListener;

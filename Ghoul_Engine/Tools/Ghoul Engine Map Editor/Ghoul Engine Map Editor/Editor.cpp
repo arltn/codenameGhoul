@@ -53,9 +53,10 @@ void Editor::update()
 		handleEvent(EditorListener->removeEvent());
 	}
 
-	InputSystem->handleInput(running);
-	RenderingSystem->render();
 	EventSystem->update();
+
+	InputSystem->handleInput();
+	RenderingSystem->render();
 	EditorStateManager->update();
 
 

@@ -9,7 +9,7 @@ class InputHandler
 {
 public:
 	static InputHandler* getInstance();
-	void handleInput(bool &running);
+	void handleInput();
 private:
 	void initHandler();
 	static InputHandler* inst;

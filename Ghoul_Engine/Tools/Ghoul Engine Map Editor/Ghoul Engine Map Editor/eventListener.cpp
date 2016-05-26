@@ -15,7 +15,7 @@ void eventListener::init()
 
 void eventListener::registerEvent(Event E)
 {
-	cout << "Event listener, registerEvent()" << endl;
+	cout << "Event listener, registerEvent() event: " << E.getName()<< endl;
 	eventManager* eventMan;
 	eventMan = eventManager::getInst();
 	events[eventCount] = E;

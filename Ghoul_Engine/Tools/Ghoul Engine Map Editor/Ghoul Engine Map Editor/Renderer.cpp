@@ -20,7 +20,7 @@ void Renderer::init() {
 
 	SDL_DisplayMode dm;
 		
-	clearTextures();
+	//clearTextures();
 
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -87,7 +87,7 @@ void Renderer::init() {
 		rendererListener->init();
 		fillEvents();
 		
-		scene.drawRect = NULL;
+		//scene.drawRect = NULL;
 		//scene.mapTiles = NULL;
 
 		/*
@@ -134,7 +134,7 @@ void Renderer::renderScene()
 {
 	SDL_SetRenderDrawColor(gRenderer, 255, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
-
+	/*
 	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
 
 	//Render the background:
@@ -146,6 +146,8 @@ void Renderer::renderScene()
 			//SDL_BlitSurface(screenSurface, NULL, scene.backgroundTextures[x], &scene.backgroundTextures[x]->clip_rect);
 
 			SDL_RenderCopy(gRenderer, scene.backgroundTextures[x], scene.backgroundClips[x], scene.backgroundRects[x]);//scene.backgroundClips[x], scene.backgroundRects[x]);
+			//scene.backgroundRects[x]
+																								   //
 		}
 	}
 
@@ -171,12 +173,13 @@ void Renderer::renderScene()
 			SDL_RenderCopy(gRenderer, scene.foregroundTextures[x], scene.foregroundClips[x], scene.foregroundRects[x]);
 		}
 	}
+	
 
 	if (scene.drawRect != NULL)
 	{
 		SDL_RenderDrawRect(gRenderer, scene.drawRect);
 	}
-
+	*/
 	//Update screen
 	SDL_RenderPresent(gRenderer);
 	//SDL_UpdateWindowSurface(window);
@@ -227,7 +230,7 @@ void Renderer::render()
 		handleEvent(holdEvent);
 	}
 
-	renderScene();
+	//renderScene();
 }
 
 
@@ -236,7 +239,7 @@ SDL_PixelFormat* Renderer::getFormat()
 	return screenSurface->format;
 };
 
-void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
+/*void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
 	scene.textures.push_back(texture);
 	scene.textureRects.push_back(rect);
@@ -248,6 +251,7 @@ void Renderer::addBackgroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Re
 	scene.backgroundTextures.push_back(texture);
 	scene.backgroundRects.push_back(rect);
 	scene.backgroundClips.push_back(clip);
+	//cout << "Background Scene Info: \n" << scene.backgroundTextures.size() << endl << scene.backgroundRects.size() << endl << scene.backgroundClips.size() << endl;
 };
 void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
@@ -255,13 +259,13 @@ void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Re
 	scene.foregroundRects.push_back(rect);
 	scene.foregroundClips.push_back(clip);
 };
-
+*/
 //void Renderer::addMap(Map m)
 //{
 //	scene.mapTiles = &m;
 //};
 
-
+/*
 void Renderer::clearTextures() 
 { 
 	for (unsigned int x = 0; x < scene.backgroundTextures.size(); x++)
@@ -279,6 +283,8 @@ void Renderer::clearTextures()
 		SDL_DestroyTexture(scene.foregroundTextures[x]);
 	}
 
+	scene.drawRect = NULL;
+
 	scene.backgroundTextures.clear();
 	scene.textures.clear(); 
 	scene.foregroundTextures.clear();
@@ -289,7 +295,7 @@ void Renderer::clearTextures()
 	scene.foregroundClips.clear();
 	scene.textureClips.clear();
 };
-
+*/
 Renderer::~Renderer(){
 	delete rendererListener;
 	SDL_DestroyWindow(window);

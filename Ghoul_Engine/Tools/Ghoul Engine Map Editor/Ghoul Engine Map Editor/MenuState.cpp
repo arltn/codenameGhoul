@@ -30,7 +30,7 @@ void MenuState::init()
 	holdSurface = tempFile->loadTexture("..\\Assets\\Images\\map_editor_background.bmp");
 	buttonFont = TTF_OpenFont("..\\Assets\\Font\\Deslucida-black-font-FFP.ttf", 100);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
-	tempRenderer->addBackgroundTexture(holdTexture);
+	//tempRenderer->addBackgroundTexture(holdTexture);
 	
 	int screenH;
 	int screenW;
@@ -71,13 +71,13 @@ void MenuState::init()
 	holdSurface = TTF_RenderText_Solid(buttonFont, newButton.buttonText.c_str(), newButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
-	tempRenderer->addTexture(holdTexture, &newButton.buttonBorder);
+	//tempRenderer->addTexture(holdTexture, &newButton.buttonBorder);
 	//tempRenderer->addSurface(holdSurface);
 
 	holdSurface = TTF_RenderText_Solid(buttonFont, loadButton.buttonText.c_str(), loadButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
-	tempRenderer->addTexture(holdTexture, &loadButton.buttonBorder);
+	//tempRenderer->addTexture(holdTexture, &loadButton.buttonBorder);
 	//tempRenderer->addSurface(holdSurface);
 
 
@@ -130,7 +130,7 @@ void MenuState::handleEvent(Event e)
 			y < newButton.buttonBorder.y + newButton.buttonBorder.h)
 		{
 			//newButton.buttonColor = Black;
-			tempRenderer->addDrawRect(&newButton.buttonBorder);
+			//tempRenderer->addDrawRect(&newButton.buttonBorder);
 			//cout << "Over New Button" << endl;
 		}
 		
@@ -140,11 +140,11 @@ void MenuState::handleEvent(Event e)
 			y < loadButton.buttonBorder.y + loadButton.buttonBorder.h)
 		{
 			//loadButton.buttonColor = Black;
-			tempRenderer->addDrawRect(&loadButton.buttonBorder);
+			//tempRenderer->addDrawRect(&loadButton.buttonBorder);
 			//cout << "Over Load Button" << endl;
 		}
-		else
-			tempRenderer->removeDrawRect();
+//		else
+			//tempRenderer->removeDrawRect();
 	} // Mouse Move
 	if (e.getName() == "Mouse Click")
 	{
@@ -208,7 +208,7 @@ void MenuState::cleanUp()
 {
 	cout << "MenuState Cleanup" << endl;
 	Renderer* tempRender = Renderer::getInstance();
-	tempRender->clearTextures();
+	//tempRender->clearTextures();
 	TTF_CloseFont(buttonFont);
 	TTF_Quit();
 }

@@ -84,10 +84,12 @@ Map::Map(string path)
 void Map::init(SDL_Renderer* render)
 {
 	SDL_Surface* hold;
-	hold = IMG_Load("..\\..\\..\\Assets\\SpriteSheets\\mapTiles.png");
-
-	if (!hold)
-		cout << "Failed to load hold" << endl;
+	string FilePath = "C:\\Users\\nja1121\\Documents\\codenameGhoul\\Ghoul_Engine\\Assets\\SpriteSheets\\mapTiles.png";
+	hold = IMG_Load(FilePath.c_str());
+	//hold = IMG_Load("..\\..\\..\\Assets\\SpriteSheets\\mapTiles.png");
+	
+	if (hold == NULL)
+		cout << "IMG_Load: " << IMG_GetError() << endl;
 	else
 	{
 		cout << "Loaded map spirtes" << endl;
@@ -98,8 +100,17 @@ void Map::init(SDL_Renderer* render)
 	for (unsigned int x = 0; x < mapTiles.size(); x++)
 	{
 		//cout << "Adding background Texture" << endl;
-		cout << "Tile " << x << ": " << mapTiles[x] << endl;
-		Renderer::getInstance()->addBackgroundTexture(sheet, &tileBoxes[mapTiles[x].getType()] ,&mapTiles[x].getBox());//, 
+		//cout << "Tile " << x << ": " << mapTiles[x] << endl;
+		/*<< tileBoxes[mapTiles[x].getType()].x << ", "
+			             << tileBoxes[mapTiles[x].getType()].y << ", "
+						 << tileBoxes[mapTiles[x].getType()].w << ", "
+						 << tileBoxes[mapTiles[x].getType()].h*/
+		cout << "type: " << mapTiles[x].getBox().x << ", "
+			<< mapTiles[x].getBox().y << ", "
+			<< mapTiles[x].getBox().w << ", "
+			<< mapTiles[x].getBox().h
+			             << endl;
+		//Renderer::getInstance()->addBackgroundTexture(sheet, &mapTiles[x].getBox(), &tileBoxes[mapTiles[x].getType()]);//, 
 	}
 }
 

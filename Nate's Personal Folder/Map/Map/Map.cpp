@@ -95,7 +95,7 @@ Map::Map(string path)
 void Map::init(SDL_Renderer* render)
 {
 	SDL_Surface* hold;
-	hold = IMG_Load("C:\\Users\\nja1121\\Documents\\codenameGhoul\\Assets\\test.png");
+	hold = IMG_Load("C:\\Users\\nja1121\\Documents\\codenameGhoul\\Assets\\SpriteSheets\\mapTiles.png");
 
 	if (!hold)
 		cout << "Failed to load hold" << endl;

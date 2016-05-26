@@ -9,7 +9,7 @@ InputHandler* InputHandler::getInstance()
 	}
 	return inst;
 };
-void InputHandler::handleInput(bool &running)
+void InputHandler::handleInput()
 {
 	Event queueEvent;
 	
@@ -21,7 +21,6 @@ void InputHandler::handleInput(bool &running)
 			eventMan->sendNow(queueEvent);
 			// SEND QUIT EVENT
 			// FOR NOW MAKING A SINGLETON FOR THE MAIN LOOP'S GAME RUNNING BOOL
-			running = false;
 		}
 		if (inputEvent.type == SDL_KEYDOWN)
 		{
