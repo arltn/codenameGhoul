@@ -1,5 +1,7 @@
 #pragma once
 #include "State.h"
+#include "Map.h"
+#include <SDL.h>
 
 using namespace std;
 
@@ -16,8 +18,8 @@ public:
 	void update();
 	static LoadState* getInstance();
 	void setFilePath(string fileName) { filePath = fileName; };
+	string getFilePath() { return filePath; };
 private:
 	string filePath;
 	static LoadState* inst;
-	
 };

@@ -81,9 +81,6 @@ void Renderer::init() {
 
 		}
 
-		//TODO:
-		//Set up a test for the W key press event
-	
 		screenSurface = SDL_GetWindowSurface(window);
 
 		rendererListener = new eventListener();
@@ -91,6 +88,7 @@ void Renderer::init() {
 		fillEvents();
 		
 		scene.drawRect = NULL;
+		//scene.mapTiles = NULL;
 
 		/*
 		Event holdEvent("W");
@@ -134,6 +132,7 @@ Renderer *Renderer::getInstance()
 
 void Renderer::renderScene()
 {
+	SDL_SetRenderDrawColor(gRenderer, 255, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
 
 	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
@@ -253,6 +252,12 @@ void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect)
 	scene.foregroundTextures.push_back(texture);
 	scene.foregroundRects.push_back(rect);
 };
+
+//void Renderer::addMap(Map m)
+//{
+//	scene.mapTiles = &m;
+//};
+
 
 void Renderer::clearTextures() 
 { 

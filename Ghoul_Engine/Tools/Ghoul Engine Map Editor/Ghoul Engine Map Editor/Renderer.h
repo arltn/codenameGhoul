@@ -29,6 +29,7 @@ public:
 	void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
 	void removeDrawRect() { scene.drawRect = NULL; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
+	//void addMap(Map m);
 	void clearTextures();
 	void fillEvents();
 protected:
