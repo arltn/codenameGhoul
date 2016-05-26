@@ -134,6 +134,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="SystemManager.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vector2f.cpp" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SpriteSheet.h" />
     <ClInclude Include="SystemManager.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Vector2f.h" />
   </ItemGroup>

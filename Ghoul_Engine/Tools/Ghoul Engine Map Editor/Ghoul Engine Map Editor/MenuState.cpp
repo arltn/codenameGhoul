@@ -30,7 +30,7 @@ void MenuState::init()
 	holdSurface = tempFile->loadTexture("..\\Assets\\Images\\map_editor_background.bmp");
 	buttonFont = TTF_OpenFont("..\\Assets\\Font\\Deslucida-black-font-FFP.ttf", 100);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
-	//tempRenderer->addBackgroundTexture(holdTexture);
+	tempRenderer->addBackgroundTexture(Texture(holdTexture));
 	
 	int screenH;
 	int screenW;
@@ -71,12 +71,13 @@ void MenuState::init()
 	holdSurface = TTF_RenderText_Solid(buttonFont, newButton.buttonText.c_str(), newButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
-	//tempRenderer->addTexture(holdTexture, &newButton.buttonBorder);
+	tempRenderer->addTexture(Texture(holdTexture, &newButton.buttonBorder));
 	//tempRenderer->addSurface(holdSurface);
 
 	holdSurface = TTF_RenderText_Solid(buttonFont, loadButton.buttonText.c_str(), loadButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
+	tempRenderer->addTexture(Texture(holdTexture, &loadButton.buttonBorder));
 	//tempRenderer->addTexture(holdTexture, &loadButton.buttonBorder);
 	//tempRenderer->addSurface(holdSurface);
 
@@ -196,6 +197,7 @@ void MenuState::handleEvent(Event e)
 			
 			StateManager* stateMan = StateManager::getInstance();
 			string holdFile = ofn.lpstrFile;
+			Renderer::getInstance()->clearAllTextures();
 			LoadState* loadState = LoadState::getInstance();
 			loadState->setFilePath(holdFile);
 			stateMan->changeState(loadState);
@@ -207,8 +209,6 @@ void MenuState::handleEvent(Event e)
 void MenuState::cleanUp()
 {
 	cout << "MenuState Cleanup" << endl;
-	Renderer* tempRender = Renderer::getInstance();
-	//tempRender->clearTextures();
 	TTF_CloseFont(buttonFont);
 	TTF_Quit();
 }

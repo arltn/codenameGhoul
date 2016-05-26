@@ -4,6 +4,7 @@
 #include "FileSystem.h"
 #include "DebuggingSystem.h"
 #include "eventListener.h"
+#include "Texture.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -25,12 +26,17 @@ public:
 	SDL_PixelFormat* getFormat();
 	//void addTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
 	//void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
+	void addTexture(Texture t) { textures.push_back(t); };
+	void addBackgroundTexture(Texture t) { backgroundTextures.push_back(t); };
 	//void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
 	//void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
 	//void removeDrawRect() { scene.drawRect = NULL; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
 	//void addMap(Map m);
+	void clearBackgroundTextures();
 	void clearTextures();
+	void clearForegroundTextures();
+	void clearAllTextures();
 	void fillEvents();
 protected:
 private:
@@ -62,7 +68,9 @@ private:
 	eventListener* rendererListener;
 	FileSystem* file;
 	DebuggingSystem* debug;
-
+	vector<Texture> backgroundTextures;
+	vector<Texture> textures;
+	vector<Texture> foregroundTextures;
 	static Renderer *inst;
 
 	// Replacing with the singleton Game that contains these two

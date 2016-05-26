@@ -134,6 +134,32 @@ void Renderer::renderScene()
 {
 	SDL_SetRenderDrawColor(gRenderer, 255, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
+
+	if (!backgroundTextures.empty())
+	{
+		for (unsigned int x = 0; x < backgroundTextures.size(); x++)
+		{
+			SDL_RenderCopy(gRenderer, backgroundTextures[x].getTexture(), backgroundTextures[x].getClip(), backgroundTextures[x].getPosRect());
+		}
+	}
+
+	if (!textures.empty())
+	{
+		for (unsigned int x = 0; x < textures.size(); x++)
+		{
+			SDL_RenderCopy(gRenderer, textures[x].getTexture(), textures[x].getClip(), textures[x].getPosRect());
+		}
+	}
+	
+	if (!foregroundTextures.empty())
+	{
+		for (unsigned int x = 0; x < foregroundTextures.size(); x++)
+		{
+			SDL_RenderCopy(gRenderer, foregroundTextures[x].getTexture(), foregroundTextures[x].getClip(), foregroundTextures[x].getPosRect());
+		}
+	}
+	
+
 	/*
 	//cout << "RENDERER TEXTURE COUNT: " << gTextures.size() << endl;
 
@@ -230,7 +256,7 @@ void Renderer::render()
 		handleEvent(holdEvent);
 	}
 
-	//renderScene();
+	renderScene();
 }
 
 
@@ -264,6 +290,40 @@ void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Re
 //{
 //	scene.mapTiles = &m;
 //};
+
+void Renderer::clearTextures()
+{
+	for (unsigned int x = 0; x < textures.size(); x++)
+	{
+		SDL_DestroyTexture(textures[x].getTexture());
+	}
+	textures.clear();
+}
+
+void Renderer::clearBackgroundTextures()
+{
+	for (unsigned int x = 0; x < backgroundTextures.size(); x++)
+	{
+		SDL_DestroyTexture(backgroundTextures[x].getTexture());
+	}
+	backgroundTextures.clear();
+}
+
+void Renderer::clearForegroundTextures()
+{
+	for (unsigned int x = 0; x < foregroundTextures.size(); x++)
+	{
+		SDL_DestroyTexture(foregroundTextures[x].getTexture());
+	}
+	foregroundTextures.clear();
+}
+
+void Renderer::clearAllTextures()
+{
+	clearBackgroundTextures();
+	clearTextures();
+	clearForegroundTextures();
+}
 
 /*
 void Renderer::clearTextures() 

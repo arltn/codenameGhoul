@@ -51,7 +51,7 @@ Map::Map(string path)
 		while (file.peek() != EOF)
 		{
 			file >> holdType;
-			mapTiles.emplace(mapTiles.begin(), Tile(holdWidth * TILE_WIDTH, (holdHeight * TILE_HEIGHT) + 70, holdType));
+			mapTiles.emplace(mapTiles.begin(), Tile(holdWidth * TILE_WIDTH, (holdHeight * TILE_HEIGHT), holdType));
 			//cout << "Adding tile" << endl;
 			//cout << "h: " << holdHeight << ", w: " << holdWidth << endl;
 			if (holdWidth + 1 >= mapWidth)
@@ -89,7 +89,10 @@ void Map::init(SDL_Renderer* render)
 	//hold = IMG_Load("..\\..\\..\\Assets\\SpriteSheets\\mapTiles.png");
 	
 	if (hold == NULL)
+	{
+		cout << "IMG_LOAD ERROR!" << endl;
 		cout << "IMG_Load: " << IMG_GetError() << endl;
+	}
 	else
 	{
 		cout << "Loaded map spirtes" << endl;
@@ -110,10 +113,10 @@ void Map::init(SDL_Renderer* render)
 			<< mapTiles[x].getBox().w << ", "
 			<< mapTiles[x].getBox().h
 			             << endl;
-		//Renderer::getInstance()->addBackgroundTexture(sheet, &mapTiles[x].getBox(), &tileBoxes[mapTiles[x].getType()]);//, 
+		Renderer::getInstance()->addBackgroundTexture(Texture(sheet, &mapTiles[x].getBox(), &tileBoxes[mapTiles[x].getType()]));//, 
 	}
 }
-
+/*
 void Map::draw(SDL_Renderer* render)
 {
 	for (unsigned int x = 0; x < mapTiles.size(); x++)
@@ -123,3 +126,4 @@ void Map::draw(SDL_Renderer* render)
 		SDL_RenderCopy(render, sheet, &tileBoxes[mapTiles[x].getType()], &mapTiles[x].getBox());
 	}
 }
+*/

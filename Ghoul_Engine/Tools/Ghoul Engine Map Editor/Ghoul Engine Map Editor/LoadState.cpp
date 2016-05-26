@@ -36,7 +36,7 @@ void LoadState::resume() {};
 
 void LoadState::draw() 
 {
-	loadStateMap->draw(Renderer::getInstance()->getRenderer());
+	//loadStateMap->draw(Renderer::getInstance()->getRenderer());
 };
 void LoadState::update() 
 {

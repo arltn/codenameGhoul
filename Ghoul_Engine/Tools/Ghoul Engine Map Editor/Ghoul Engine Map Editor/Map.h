@@ -23,7 +23,7 @@ class Map
 public:
 	Map(string path);
 	void init(SDL_Renderer* render);
-	void draw(SDL_Renderer* render);
+	//void draw(SDL_Renderer* render);
 private:
 	vector<Tile> mapTiles;
 	int mapWidth, mapHeight, totalTiles;
