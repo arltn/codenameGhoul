@@ -14,7 +14,10 @@ const int TILE_BOX_COUNT = 100;
 enum tileType
 {
 	// Default non shown tile
-	BLACK_TILE
+	BLACK_TILE,
+	RED_TILE,
+	GREEN_TILE,
+	BLUE_TILE
 };
 
 class Map

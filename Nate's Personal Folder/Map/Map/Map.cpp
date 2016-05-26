@@ -39,9 +39,9 @@ Map::Map(string path)
 		file.close();
 		file.open(path, ios::in);
 		getFileWidth(file);
-		//cout << "Map demensions:\n             W: "
-			//<< mapWidth << "\n             H: "
-			//<< mapHeight << "\n         Total: " << totalTiles << endl;
+		cout << "Map demensions:\n             W: "
+			<< mapWidth << "\n             H: "
+			<< mapHeight << "\n         Total: " << totalTiles << endl;
 		file.close();
 		file.open(path, ios::in);
 		int holdType = 0;
@@ -52,8 +52,8 @@ Map::Map(string path)
 			file >> holdType;
 			mapTiles.emplace(mapTiles.begin(),Tile(holdWidth * TILE_WIDTH, holdHeight * TILE_HEIGHT, holdType));
 			//cout << "Adding tile" << endl;
-			cout << "h: " << holdHeight << ", w: " << holdWidth << endl;
-			if (holdWidth + 1 > mapWidth)
+			//cout << "h: " << holdHeight << ", w: " << holdWidth << endl;
+			if (holdWidth + 1 >= mapWidth) // Need the >= because we are starting at 0
 			{
 				holdWidth = 0;
 				holdHeight++;
@@ -76,6 +76,20 @@ Map::Map(string path)
 	tileBoxes[BLACK_TILE].h = TILE_HEIGHT;
 	tileBoxes[BLACK_TILE].w = TILE_WIDTH;
 
+	tileBoxes[RED_TILE].x = 64;
+	tileBoxes[RED_TILE].y = 0;
+	tileBoxes[RED_TILE].h = TILE_HEIGHT;
+	tileBoxes[RED_TILE].w = TILE_WIDTH;
+
+	tileBoxes[GREEN_TILE].x = 128;
+	tileBoxes[GREEN_TILE].y = 0;
+	tileBoxes[GREEN_TILE].h = TILE_HEIGHT;
+	tileBoxes[GREEN_TILE].w = TILE_WIDTH;
+
+	tileBoxes[BLUE_TILE].x = 192;
+	tileBoxes[BLUE_TILE].y = 0;
+	tileBoxes[BLUE_TILE].h = TILE_HEIGHT;
+	tileBoxes[BLUE_TILE].w = TILE_WIDTH;
 }
 
 void Map::init(SDL_Renderer* render)

@@ -32,7 +32,7 @@ int main(int argc, char* args[])
 				running = false;
 		}
 
-		SDL_SetRenderDrawColor(render, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(render, 0, 0, 0, 0xFF);
 		SDL_RenderClear(render);
 		mainMap.draw(render);
 		SDL_RenderPresent(render);
