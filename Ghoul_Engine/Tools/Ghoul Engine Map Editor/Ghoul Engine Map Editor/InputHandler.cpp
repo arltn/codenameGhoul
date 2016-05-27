@@ -38,6 +38,10 @@ void InputHandler::handleInput()
 				eventMan->queueEvent(queueEvent);
 				//eventMan->printListeners();
 				break;
+			case SDLK_0:
+				queueEvent.setName("Show Textures");
+				eventMan->queueEvent(queueEvent);
+				break;
 			default:
 				break;
 			}
