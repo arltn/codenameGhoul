@@ -26,8 +26,9 @@ public:
 	SDL_PixelFormat* getFormat();
 	//void addTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
 	//void addBackgroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	void addTexture(Texture t) { textures.push_back(t); };
-	void addBackgroundTexture(Texture t) { backgroundTextures.push_back(t); };
+	void addTexture(Texture* t) { textures.push_back(t); };
+	void addBackgroundTexture(Texture* t) { backgroundTextures.push_back(t); };
+	void addForegroundTexture(Texture* t) { foregroundTextures.push_back(t); };
 	//void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
 	//void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
 	//void removeDrawRect() { scene.drawRect = NULL; };
@@ -68,9 +69,9 @@ private:
 	eventListener* rendererListener;
 	FileSystem* file;
 	DebuggingSystem* debug;
-	vector<Texture> backgroundTextures;
-	vector<Texture> textures;
-	vector<Texture> foregroundTextures;
+	vector<Texture*> backgroundTextures;
+	vector<Texture*> textures;
+	vector<Texture*> foregroundTextures;
 	static Renderer *inst;
 
 	// Replacing with the singleton Game that contains these two

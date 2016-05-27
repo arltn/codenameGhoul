@@ -30,7 +30,7 @@ void MenuState::init()
 	holdSurface = tempFile->loadTexture("..\\Assets\\Images\\map_editor_background.bmp");
 	buttonFont = TTF_OpenFont("..\\Assets\\Font\\Deslucida-black-font-FFP.ttf", 100);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
-	tempRenderer->addBackgroundTexture(Texture(holdTexture));
+	tempRenderer->addBackgroundTexture(new Texture(holdTexture, { 0,0,0,0 }, { 0,0,0,0 }));
 	
 	int screenH;
 	int screenW;
@@ -71,13 +71,13 @@ void MenuState::init()
 	holdSurface = TTF_RenderText_Solid(buttonFont, newButton.buttonText.c_str(), newButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
-	tempRenderer->addTexture(Texture(holdTexture, &newButton.buttonBorder));
+	tempRenderer->addTexture(new Texture(holdTexture, newButton.buttonBorder, {0,0,0,0}));
 	//tempRenderer->addSurface(holdSurface);
 
 	holdSurface = TTF_RenderText_Solid(buttonFont, loadButton.buttonText.c_str(), loadButton.textColor);
 	holdTexture = SDL_CreateTextureFromSurface(tempRenderer->getRenderer(), holdSurface);
 
-	tempRenderer->addTexture(Texture(holdTexture, &loadButton.buttonBorder));
+	tempRenderer->addTexture(new Texture(holdTexture, loadButton.buttonBorder, {0,0,0,0}));
 	//tempRenderer->addTexture(holdTexture, &loadButton.buttonBorder);
 	//tempRenderer->addSurface(holdSurface);
 

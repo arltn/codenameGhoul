@@ -10,11 +10,12 @@ using namespace std;
 class Texture
 {
 public:
-	Texture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	//~Texture() { SDL_DestroyTexture(mTexture); };
+	Texture(SDL_Texture*, SDL_Rect, SDL_Rect);
+	~Texture();
 	SDL_Texture* getTexture() { return mTexture; };
-	SDL_Rect* getClip() { return clipRect; };
-	SDL_Rect* getPosRect() { return texturePos; };
+	int getID() { return textureID; };
+	SDL_Rect* getClip();
+	SDL_Rect* getPosRect();
 private:
 	SDL_Texture* mTexture;
 	SDL_Rect* clipRect;
