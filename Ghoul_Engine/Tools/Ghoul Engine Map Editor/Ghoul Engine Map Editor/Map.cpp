@@ -113,7 +113,7 @@ void Map::init(SDL_Renderer* render)
 			<< mapTiles[x].getBox().w << ", "
 			<< mapTiles[x].getBox().h
 			             << endl;
-		Renderer::getInstance()->addBackgroundTexture(new Texture(sheet, mapTiles[x].getBox(), tileBoxes[mapTiles[x].getType()]));//, 
+		Renderer::getInstance()->addBackgroundTexture(Texture(sheet, &mapTiles[x].getBox(), &tileBoxes[mapTiles[x].getType()]));//, 
 	}
 }
 /*

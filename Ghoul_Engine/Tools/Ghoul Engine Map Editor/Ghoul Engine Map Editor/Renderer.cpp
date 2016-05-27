@@ -62,7 +62,7 @@ void Renderer::init() {
 			else
 			{
 				SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
-				
+				/*
 				int imgFlags = IMG_INIT_PNG;// | IMG_INIT_JPG | IMG_INIT_TIF;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
@@ -71,7 +71,7 @@ void Renderer::init() {
 					debug->writeMessage(debugMessage);
 					//printf(, IMG_GetError());
 				}
-				/*else
+				else
 				{
 					gTexture = rendererFileSystem->loadTexture("..\\Assets\\Pictures\\Demon.png", gRenderer);
 				}
@@ -111,17 +111,12 @@ void Renderer::fillEvents()
 {
 	vector<string> holdEvents;
 	holdEvents = file->loadFile("..\\Assets\\Config\\renderEvent.dat");
-	Event holdEvent("Show Textures");
+
 
 	for (unsigned int x = 0; x < holdEvents.size(); x++)
 	{
 		rendererListener->registerEvent(holdEvents[x]);
 	}
-
-	rendererListener->registerEvent(holdEvent);
-
-	holdEvent.setName("Fullscreen");
-	rendererListener->registerEvent(holdEvent);
 
 };
 
@@ -137,15 +132,14 @@ Renderer *Renderer::getInstance()
 
 void Renderer::renderScene()
 {
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 255);
+	SDL_SetRenderDrawColor(gRenderer, 255, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(gRenderer);
 
 	if (!backgroundTextures.empty())
 	{
 		for (unsigned int x = 0; x < backgroundTextures.size(); x++)
 		{
-			SDL_RenderCopy(gRenderer, backgroundTextures[x]->getTexture(), backgroundTextures[x]->getClip(), backgroundTextures[x]->getPosRect());
-			//SDL_RenderPresent(gRenderer);
+			SDL_RenderCopy(gRenderer, backgroundTextures[x].getTexture(), backgroundTextures[x].getClip(), backgroundTextures[x].getPosRect());
 		}
 	}
 
@@ -153,8 +147,7 @@ void Renderer::renderScene()
 	{
 		for (unsigned int x = 0; x < textures.size(); x++)
 		{
-			SDL_RenderCopy(gRenderer, textures[x]->getTexture(), textures[x]->getClip(), textures[x]->getPosRect());
-			//SDL_RenderPresent(gRenderer);
+			SDL_RenderCopy(gRenderer, textures[x].getTexture(), textures[x].getClip(), textures[x].getPosRect());
 		}
 	}
 	
@@ -162,9 +155,7 @@ void Renderer::renderScene()
 	{
 		for (unsigned int x = 0; x < foregroundTextures.size(); x++)
 		{
-			//cout << "Doing renderCopy for FT" << endl;
-			SDL_RenderCopy(gRenderer, foregroundTextures[x]->getTexture(), foregroundTextures[x]->getClip(), foregroundTextures[x]->getPosRect());
-			//SDL_RenderPresent(gRenderer);
+			SDL_RenderCopy(gRenderer, foregroundTextures[x].getTexture(), foregroundTextures[x].getClip(), foregroundTextures[x].getPosRect());
 		}
 	}
 	
@@ -233,37 +224,6 @@ void Renderer::handleEvent(Event E)
 	//cout << "Renderer handleEvent" << endl;
 	if (E.getName() == "Fullscreen")
 		fullScreen();
-	if (E.getName() == "Show Textures")
-	{
-		cout << "BT size: " << backgroundTextures.size() << endl;
-		cout << "T size: " << textures.size() << endl;
-		cout << "FT size: " << foregroundTextures.size() << endl;
-		cout << "BT empty: " << backgroundTextures.empty() << endl;
-		cout << "T empty: " << textures.empty() << endl;
-		cout << "FT empty: " << foregroundTextures.empty() << endl;
-		//cout << "FT TEST: " << foregroundTextures[0].getPosRect()->x << endl << foregroundTextures[0].getPosRect()->y << endl << foregroundTextures[0].getPosRect()->w << endl << foregroundTextures[0].getPosRect()->h << endl;
-		cout << "FT TEST: \n" << endl;
-		for (unsigned int x = 0; x < foregroundTextures.size(); x++)
-		{
-			cout << "TEXTURE ID: " << foregroundTextures[x]->getID() << endl;
-			if (foregroundTextures[x]->getPosRect() != NULL)
-				cout << foregroundTextures[x]->getPosRect()->x << endl
-				<< foregroundTextures[x]->getPosRect()->y << endl
-				<< foregroundTextures[x]->getPosRect()->w << endl
-				<< foregroundTextures[x]->getPosRect()->h << endl;
-			else
-				debug->writeMessage("FT getPosRect is null");
-				//cout << "" << endl;
-			if (foregroundTextures[x]->getClip() != NULL)
-				cout << foregroundTextures[x]->getClip()->x << endl
-				<< foregroundTextures[x]->getClip()->y << endl
-				<< foregroundTextures[x]->getClip()->w << endl
-				<< foregroundTextures[x]->getClip()->h << endl;
-			else
-				debug->writeMessage("FT getClip is null");
-				//cout << "FT getClip is null" << endl;
-		}
-	}
 	//cout << E << endl;
 	//double holdValue = E.getValue();
 	//string message = "Event: " + E.getName();
@@ -333,45 +293,29 @@ void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Re
 
 void Renderer::clearTextures()
 {
-	/*
 	for (unsigned int x = 0; x < textures.size(); x++)
 	{
 		SDL_DestroyTexture(textures[x].getTexture());
 	}
-	*/
-	while (!textures.empty())
-	{
-		textures.pop_back();
-	}
-	//textures.clear();
+	textures.clear();
 }
 
 void Renderer::clearBackgroundTextures()
 {
-	
-	//for (unsigned int x = 0; x < backgroundTextures.size(); x++)
-	while(!backgroundTextures.empty())
+	for (unsigned int x = 0; x < backgroundTextures.size(); x++)
 	{
-		backgroundTextures.pop_back();
-	//	SDL_DestroyTexture(backgroundTextures[x].getTexture());
+		SDL_DestroyTexture(backgroundTextures[x].getTexture());
 	}
-	
-	//backgroundTextures.clear();
+	backgroundTextures.clear();
 }
 
 void Renderer::clearForegroundTextures()
 {
-	while (!foregroundTextures.empty())
-	{
-		foregroundTextures.pop_back();
-	}
-	/*
 	for (unsigned int x = 0; x < foregroundTextures.size(); x++)
 	{
 		SDL_DestroyTexture(foregroundTextures[x].getTexture());
 	}
-	*/
-	//foregroundTextures.clear();
+	foregroundTextures.clear();
 }
 
 void Renderer::clearAllTextures()
@@ -414,7 +358,6 @@ void Renderer::clearTextures()
 */
 Renderer::~Renderer(){
 	delete rendererListener;
-	clearAllTextures();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(gRenderer);
 	IMG_Quit();

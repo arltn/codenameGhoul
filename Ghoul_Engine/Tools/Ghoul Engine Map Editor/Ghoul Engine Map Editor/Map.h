@@ -11,7 +11,12 @@ using namespace std;
 
 const int TILE_BOX_COUNT = 100;
 
-
+enum tileType
+{
+	// Default non shown tile
+	BLACK_TILE = 0,
+	GREEN_TILE
+};
 
 class Map
 {
