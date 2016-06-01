@@ -110,19 +110,13 @@ Renderer *Renderer::inst = 0;
 void Renderer::fillEvents() 
 {
 	vector<string> holdEvents;
-	holdEvents = file->loadFile("..\\Assets\\Config\\renderEvent.dat");
-	Event holdEvent("Show Textures");
+	holdEvents = file->loadFile("..\\Assets\\event\\renderEvents.DAT");
+
 
 	for (unsigned int x = 0; x < holdEvents.size(); x++)
 	{
 		rendererListener->registerEvent(holdEvents[x]);
 	}
-
-	rendererListener->registerEvent(holdEvent);
-
-	holdEvent.setName("Fullscreen");
-	rendererListener->registerEvent(holdEvent);
-
 };
 
 Renderer *Renderer::getInstance()
@@ -137,7 +131,7 @@ Renderer *Renderer::getInstance()
 
 void Renderer::renderScene()
 {
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 255);
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 	SDL_RenderClear(gRenderer);
 
 	if (!backgroundTextures.empty())
@@ -209,12 +203,19 @@ void Renderer::renderScene()
 		}
 	}
 	
-
-	if (scene.drawRect != NULL)
-	{
-		SDL_RenderDrawRect(gRenderer, scene.drawRect);
-	}
 	*/
+	if (drawRect.w != 0 && drawRect.h != 0)
+	{
+		//cout << "Draw rect info: " << endl
+		//	<< drawRect->x << endl
+			//<< drawRect->y << endl
+			//<< drawRect->w << endl
+			//<< drawRect->h << endl;
+		SDL_SetRenderDrawColor(gRenderer, drawRectColor.r, drawRectColor.g, drawRectColor.b, drawRectColor.a);
+		SDL_RenderDrawRect(gRenderer, &drawRect);
+
+	}
+	
 	//Update screen
 	SDL_RenderPresent(gRenderer);
 	//SDL_UpdateWindowSurface(window);
@@ -305,6 +306,17 @@ SDL_PixelFormat* Renderer::getFormat()
 	return screenSurface->format;
 };
 
+void Renderer::addDrawRect(SDL_Rect rect, SDL_Color Color)
+{
+	//drawRect = &rect;
+	drawRect.x = rect.x;
+	drawRect.y = rect.y;
+	drawRect.w = rect.w;
+	drawRect.h = rect.h;
+
+	drawRectColor = Color;
+};
+
 /*void Renderer::addTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Rect* clip)
 {
 	scene.textures.push_back(texture);
@@ -330,6 +342,7 @@ void Renderer::addForegroundTexture(SDL_Texture* texture, SDL_Rect* rect, SDL_Re
 //{
 //	scene.mapTiles = &m;
 //};
+
 
 void Renderer::clearTextures()
 {

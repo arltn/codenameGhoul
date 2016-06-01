@@ -29,9 +29,13 @@ public:
 	void addTexture(Texture* t) { textures.push_back(t); };
 	void addBackgroundTexture(Texture* t) { backgroundTextures.push_back(t); };
 	void addForegroundTexture(Texture* t) { foregroundTextures.push_back(t); };
+	int getForegroundSize() { return foregroundTextures.size(); };
+	int getTexturesSize() { return textures.size(); };
+	int getBackgroundSize() { return backgroundTextures.size(); };
+
 	//void addForegroundTexture(SDL_Texture*, SDL_Rect* = NULL, SDL_Rect* = NULL);
-	//void addDrawRect(SDL_Rect* rect) { scene.drawRect = rect; };
-	//void removeDrawRect() { scene.drawRect = NULL; };
+	void addDrawRect(SDL_Rect rect, SDL_Color);
+	void removeDrawRect() { drawRect = {0,0,0,0}; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
 	//void addMap(Map m);
 	void clearBackgroundTextures();
@@ -72,6 +76,8 @@ private:
 	vector<Texture*> backgroundTextures;
 	vector<Texture*> textures;
 	vector<Texture*> foregroundTextures;
+	SDL_Rect drawRect;
+	SDL_Color drawRectColor;
 	static Renderer *inst;
 
 	// Replacing with the singleton Game that contains these two

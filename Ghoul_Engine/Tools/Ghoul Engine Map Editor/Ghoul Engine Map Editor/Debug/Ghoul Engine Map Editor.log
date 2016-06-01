@@ -1,7 +1,10 @@
-﻿  Renderer.cpp
-  LoadState.cpp
-c:\users\nja1121\documents\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
-  c:\users\nja1121\documents\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
-  Generating Code...
-  Ghoul Engine Map Editor.vcxproj -> C:\Users\nja1121\Documents\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.exe
-  Ghoul Engine Map Editor.vcxproj -> C:\Users\nja1121\Documents\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.pdb (Partial PDB)
+﻿  MenuState.cpp
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\eventmanager.h(21): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(124): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(125): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(154): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(155): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\natea\documents\development\codenameghoul\ghoul_engine\tools\ghoul engine map editor\ghoul engine map editor\menustate.cpp(192): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+  Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.exe
+  Ghoul Engine Map Editor.vcxproj -> C:\Users\natea\Documents\Development\codenameGhoul\Ghoul_Engine\Tools\Ghoul Engine Map Editor\Debug\Ghoul Engine Map Editor.pdb (Partial PDB)

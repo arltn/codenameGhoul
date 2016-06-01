@@ -93,6 +93,7 @@ SDL_Surface* FileSystem::loadTexture(std::string path)
 
 vector<string> FileSystem::loadFile(std::string path)
 {
+	cout << "Path: " << path << endl;
 	ifstream retVal;
 	vector<string> retVect;
 	string holdString;

@@ -5,10 +5,11 @@
 #include "Editor.h"
 //#include "Map.h"
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 using namespace std;
 
-const int MAX_TILE_COUNT = 100;
+const int MAX_TILE_COUNT = 1000;
 
 class LoadState : public State
 {
@@ -24,12 +25,21 @@ public:
 	static LoadState* getInstance();
 	void setFilePath(string fileName) { filePath = fileName; };
 	string getFilePath() { return filePath; };
-	void getFileHeight(int &);
-	void getFileWidth(int &, int &, const int);
+	void getFileHeight();
+	void getFileWidth();
 	void buildTileClips();
+	void handleEvent(Event E);
 private:
 	string filePath;
 	static LoadState* inst;
 	SDL_Rect tileClips[MAX_TILE_COUNT];
+	eventListener loadStateListener;
+	int mapWidth;
+	int mapHeight;
+	int totalTiles;
+	int mapSpriteWidth;
+	int mapSpirteHeight;
+	SDL_Rect loadStateViewPort;
+	TTF_Font* font;
 	//Map* loadStateMap;
 };

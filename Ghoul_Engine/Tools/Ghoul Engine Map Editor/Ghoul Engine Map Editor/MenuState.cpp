@@ -49,14 +49,14 @@ void MenuState::init()
 	}
 
 	
-	newButton.buttonBorder.x = screenW / 2 - 100;
+	newButton.buttonBorder.x = screenW / 2 - 300;
 	newButton.buttonBorder.y = screenH / 3 - 100;
 	newButton.buttonBorder.h = 200;
-	newButton.buttonBorder.w = 200;
+	newButton.buttonBorder.w = 600;
 	newButton.buttonColor = White;
 	newButton.buttonPressedColor = Black;
 	newButton.textColor = Black;
-	newButton.buttonText = "New Map";
+	newButton.buttonText = "New Map (CURRENTLY NOT WORKING)";
 
 	loadButton.buttonBorder.x = screenW / 2 - 100;
 	loadButton.buttonBorder.y = screenW / 3;
@@ -131,7 +131,7 @@ void MenuState::handleEvent(Event e)
 			y < newButton.buttonBorder.y + newButton.buttonBorder.h)
 		{
 			//newButton.buttonColor = Black;
-			//tempRenderer->addDrawRect(&newButton.buttonBorder);
+			tempRenderer->addDrawRect(newButton.buttonBorder, {255, 255, 255, 255});
 			//cout << "Over New Button" << endl;
 		}
 		
@@ -141,7 +141,7 @@ void MenuState::handleEvent(Event e)
 			y < loadButton.buttonBorder.y + loadButton.buttonBorder.h)
 		{
 			//loadButton.buttonColor = Black;
-			//tempRenderer->addDrawRect(&loadButton.buttonBorder);
+			tempRenderer->addDrawRect(loadButton.buttonBorder, { 255, 255, 255, 255 });
 			//cout << "Over Load Button" << endl;
 		}
 //		else
@@ -173,7 +173,7 @@ void MenuState::handleEvent(Event e)
 		{
 			//loadButton.buttonColor = Black;
 			//tempRenderer->addDrawRect(&loadButton.buttonBorder);
-			
+			bool fileSelected = false;
 			OPENFILENAME ofn;
 			// a another memory buffer to contain the file name
 			char szFile[100];
@@ -189,18 +189,23 @@ void MenuState::handleEvent(Event e)
 			ofn.nMaxFileTitle = 0;
 			ofn.lpstrInitialDir = "..\\..\\..\\Assets\\Maps\\";
 			ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-			GetOpenFileName(&ofn);
-			//MessageBox(NULL, ofn.lpstrFile, "File Name", MB_OK);
-
-
-
+			fileSelected = GetOpenFileName(&ofn);
 			
-			StateManager* stateMan = StateManager::getInstance();
-			string holdFile = ofn.lpstrFile;
-			Renderer::getInstance()->clearAllTextures();
-			LoadState* loadState = LoadState::getInstance();
-			loadState->setFilePath(holdFile);
-			stateMan->changeState(loadState);
+			//string messageText = '"' + ofn.lpstrFile + '"';
+			//cout << messageText << endl;
+			//fileSelected = MessageBox(NULL, ofn.lpstrFile, "File Name", MB_OK);
+
+
+
+			if(fileSelected)
+			{
+				StateManager* stateMan = StateManager::getInstance();
+				string holdFile = ofn.lpstrFile;
+				Renderer::getInstance()->clearAllTextures();
+				LoadState* loadState = LoadState::getInstance();
+				loadState->setFilePath(holdFile);
+				stateMan->changeState(loadState);
+			}
 			
 		}
 	}
