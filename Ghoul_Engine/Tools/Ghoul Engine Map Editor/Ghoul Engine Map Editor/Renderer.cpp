@@ -425,6 +425,34 @@ void Renderer::clearTextures()
 	scene.textureClips.clear();
 };
 */
+
+void Renderer::removeTexture(int id)
+{
+	for (unsigned int x = 0; x < backgroundTextures.size(); x++)
+	{
+		if (backgroundTextures[x]->getID() == id)
+		{
+			backgroundTextures.erase(backgroundTextures.begin() + (x));
+		}
+	}
+
+	for (unsigned int x = 0; x < textures.size(); x++)
+	{
+		if (textures[x]->getID() == id)
+		{
+			textures.erase(textures.begin() + (x));
+		}
+	}
+
+	for (unsigned int x = 0; x < foregroundTextures.size(); x++)
+	{
+		if (foregroundTextures[x]->getID() == id)
+		{
+			foregroundTextures.erase(foregroundTextures.begin() + (x));
+		}
+	}
+};
+
 Renderer::~Renderer(){
 	delete rendererListener;
 	clearAllTextures();

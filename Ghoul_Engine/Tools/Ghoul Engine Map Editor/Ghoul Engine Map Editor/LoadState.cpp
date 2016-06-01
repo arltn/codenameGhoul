@@ -63,7 +63,7 @@ void LoadState::init()
 	buildTileClips();
 
 
-	cout << "Map sprite w: " << mapSpriteWidth << ", h: " << mapSpirteHeight << endl;
+	//cout << "Map sprite w: " << mapSpriteWidth << ", h: " << mapSpirteHeight << endl;
 
 		//SDL_CreateTextureFromSurface(tempRender->getRenderer(), IMG_Load("C:\\Users\\nja1121\\Documents\\codenameGhoul\\Ghoul_Engine\\Assets\\SpriteSheets\\mapTiles.png"));
 	if (holdTexture == NULL)
@@ -75,6 +75,8 @@ void LoadState::init()
 	{
 		file >> holdType;
 		
+		backgroundTypes.push_back(holdType);
+
 		holdRects[rectCounter].x = holdWidth * (TILE_WIDTH);
 		holdRects[rectCounter].y = holdHeight * (TILE_HEIGHT) + 25;
 		holdRects[rectCounter].w = TILE_WIDTH;
@@ -111,7 +113,7 @@ void LoadState::init()
 	SDL_Rect menuRect;
 	SDL_Surface* holdSurface;
 	//
-	string fileName = "C:\\Users\\natea\\Documents\\Development\\codenameGhoul\\Ghoul_Engine\\Tools\\Ghoul Engine Map Editor\\Assets\\Font\\Deslucida-black-font-FFP.ttf";
+	string fileName = "C:\\Users\\nja1121\\Documents\\codenameGhoul\\Ghoul_Engine\\Tools\\Ghoul Engine Map Editor\\Assets\\Font\\Deslucida-black-font-FFP.ttf";
 	font = TTF_OpenFont(fileName.c_str(), 24);
 
 	menuRect.x = 5;
@@ -128,9 +130,39 @@ void LoadState::init()
 
 	holdTexture = SDL_CreateTextureFromSurface(tempRender->getRenderer(), holdSurface);
 
+	Texture* tempTexture = new Texture(holdTexture, menuRect, { 0,0,0,0 });
 
 
-	tempRender->addForegroundTexture(new Texture(holdTexture, menuRect, { 0,0,0,0 }));
+	//tempTexture =  Texture(holdTexture, menuRect, { 0,0,0,0 });
+
+	//cout << "LOAD STATE STUFF!\nMENU BUTTON ID: " << tempTexture->getID() << endl;
+
+	tempRender->addForegroundTexture(tempTexture);
+
+
+	holdSurface = TTF_RenderText_Solid(font, "Save", { 255,255,255,255 });
+	holdTexture = SDL_CreateTextureFromSurface(tempRender->getRenderer(), holdSurface);
+
+	//tempTexture.setTexture(holdTexture, { 5,25,64,25 }, { 0,0,0,0 });
+	tempTexture = new Texture(holdTexture, { 5,25,64,25 }, { 0,0,0,0 });
+
+	//cout << "LOAD STATE STUFF!\nSAVE BUTTON ID: " << tempTexture->getID() << endl;
+
+	menuTextures.emplace_back(tempTexture);
+	menuTextureIDs.push_back(tempTexture->getID());
+
+	holdSurface = TTF_RenderText_Solid(font, "Save As", { 255,255,255,255 });
+	holdTexture = SDL_CreateTextureFromSurface(tempRender->getRenderer(), holdSurface);
+
+	//tempTexture.setTexture(holdTexture, { 5,25,64,25 }, { 0,0,0,0 });
+	tempTexture = new Texture(holdTexture, { 5,50,64,25 }, { 0,0,0,0 });
+
+	//cout << "LOAD STATE STUFF!\nSAVE BUTTON ID: " << tempTexture->getID() << endl;
+
+	menuTextures.emplace_back(tempTexture);
+	menuTextureIDs.push_back(tempTexture->getID());
+
+	menuShown = false;
 
 	//cout << "File to be loaded: " << filePath << endl;
 	// NEED TO USE NON MAP STUFF HERE
@@ -247,7 +279,7 @@ void LoadState::handleEvent(Event E)
 		collisionRect.h = TILE_HEIGHT;
 		collisionRect.w = TILE_WIDTH;
 
-		if (mouseRect.y + 15 > 25)
+		if (mouseRect.y + 15 > 25 && !menuShown)
 		{
 
 			drawRect.w = TILE_WIDTH;
@@ -257,6 +289,23 @@ void LoadState::handleEvent(Event E)
 
 
 			Renderer::getInstance()->addDrawRect(drawRect, SDL_Color{ 255,255,255,255 });
+		}
+		else if (mouseRect.y + 15 > 25 && menuShown)
+		{
+			if (mouseRect.x < 70)
+			{
+				drawRect.w = 66;
+				drawRect.h = 25;
+				drawRect.x = 4;
+				drawRect.y = ((mouseRect.y +15) / 25) * 25;
+
+				if (drawRect.y > (menuTextures.size()) * 25)
+					drawRect.y = (menuTextures.size()) * 25;
+
+				Renderer::getInstance()->addDrawRect(drawRect, SDL_Color{ 255,255,255,255 });
+			}
+			else
+				Renderer::getInstance()->removeDrawRect();
 		}
 		else if (mouseRect.y + 15 < 25)
 		{
@@ -301,14 +350,101 @@ void LoadState::handleEvent(Event E)
 		SDL_Rect mouseRect;
 
 		mouseRect.x = E.getValue1();
-		mouseRect.y = E.getValue2() - 15;
+		mouseRect.y = E.getValue2();
 		mouseRect.h = 10;
 		mouseRect.w = 10;
 
-		if (mouseRect.y + 15 < 25)
-			if(mouseRect.x <= 70)
-				cout << "Menu Button clicked" << endl;
+		if (mouseRect.y < 25)
+			if (mouseRect.x <= 70)
+				//cout << "Menu Button clicked" << endl;
+				showMenu();
+		if (checkCollision(mouseRect, { 4,25,66,25 }) && menuShown)
+			saveMap();
+		if (checkCollision(mouseRect, { 4,50,66,25 }) && menuShown)
+			saveAsMap();
+			//cout << "Save clicked!" << endl;
+		//TODO ADD SAVE FUNCTIONALITY
+
 	}
 }
 
+void LoadState::showMenu()
+{
+	if (menuShown)
+	{
+		menuShown = false;
+		for (unsigned int x = 0; x < menuTextureIDs.size(); x++)
+		{
+			//cout << "SHOW MENU REMOVING ID: " << menuTextureIDs[x] << endl;
+			Renderer::getInstance()->removeTexture(menuTextureIDs[x]);
+		}
+	}
+	else
+	{
+		menuShown = true;
+		for (unsigned int x = 0; x < menuTextures.size(); x++)
+		{
+			Renderer::getInstance()->addForegroundTexture(menuTextures[x]);
+		}
+	}
 
+};
+
+void LoadState::saveMap()
+{
+	ofstream file;
+	file.open(filePath);
+	file.clear();
+	for (unsigned int x = 0; x < backgroundTypes.size(); x++)
+	{
+		if (x % mapWidth == 0 && x != 0)
+			file << endl;
+			//cout << endl;
+		//cout << 0 << backgroundTypes[x] << " ";
+		file << " " << 0 << backgroundTypes[x];
+	}
+	file.close();
+}
+
+void LoadState::saveAsMap()
+{
+	bool fileSelected = false;
+	OPENFILENAME ofn;
+	// a another memory buffer to contain the file name
+	char szFile[100];
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFile;
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = "Map Files\0*.MAPDAT\0\0";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = "..\\..\\..\\Assets\\Maps\\";
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+	fileSelected = GetSaveFileName(&ofn);
+
+	if (fileSelected)
+	{
+		saveMap(ofn.lpstrFile);
+	}
+
+};
+
+void LoadState::saveMap(string fileName)
+{
+	ofstream file;
+	file.open(fileName + ".MAPDAT");
+	file.clear();
+	for (unsigned int x = 0; x < backgroundTypes.size(); x++)
+	{
+		if (x % mapWidth == 0 && x != 0)
+			file << endl;
+		//cout << endl;
+		//cout << 0 << backgroundTypes[x] << " ";
+		file << " " << 0 << backgroundTypes[x];
+	}
+	file.close();
+}

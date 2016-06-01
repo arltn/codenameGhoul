@@ -38,6 +38,7 @@ public:
 	void removeDrawRect() { drawRect = {0,0,0,0}; };
 	SDL_Renderer* getRenderer() { return gRenderer; };
 	//void addMap(Map m);
+	void removeTexture(int);
 	void clearBackgroundTextures();
 	void clearTextures();
 	void clearForegroundTextures();

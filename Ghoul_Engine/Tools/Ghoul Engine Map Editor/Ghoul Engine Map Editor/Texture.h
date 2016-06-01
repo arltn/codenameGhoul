@@ -13,6 +13,7 @@ public:
 	Texture(SDL_Texture*, SDL_Rect, SDL_Rect);
 	~Texture();
 	SDL_Texture* getTexture() { return mTexture; };
+	void setTexture(SDL_Texture*, SDL_Rect, SDL_Rect);
 	int getID() { return textureID; };
 	SDL_Rect* getClip();
 	SDL_Rect* getPosRect();

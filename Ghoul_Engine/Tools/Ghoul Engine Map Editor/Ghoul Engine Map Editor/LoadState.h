@@ -6,6 +6,7 @@
 //#include "Map.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <Windows.h>
 
 using namespace std;
 
@@ -29,6 +30,10 @@ public:
 	void getFileWidth();
 	void buildTileClips();
 	void handleEvent(Event E);
+	void showMenu();
+	void saveAsMap();
+	void saveMap();
+	void saveMap(string);
 private:
 	string filePath;
 	static LoadState* inst;
@@ -41,5 +46,9 @@ private:
 	int mapSpirteHeight;
 	SDL_Rect loadStateViewPort;
 	TTF_Font* font;
+	bool menuShown;
+	vector<int> backgroundTypes;
+	vector<int> menuTextureIDs;
+	vector<Texture*> menuTextures;
 	//Map* loadStateMap;
 };
